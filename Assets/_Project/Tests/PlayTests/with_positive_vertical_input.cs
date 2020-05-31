@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using JasonRPG;
 using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;

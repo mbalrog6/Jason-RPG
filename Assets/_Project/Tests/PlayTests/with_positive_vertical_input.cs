@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using JasonRPG;
+using JasonRPG.Inventory;
 using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
@@ -143,6 +144,26 @@ namespace a_player
 
             float turnAmount = Helpers.CalculateTurn(originalRotation, player.transform.rotation);
             Assert.Greater( turnAmount, 0);
+        }
+    }
+
+    public class moving_into_an_item
+    {
+        [UnityTest]
+        public IEnumerator picks_up_and_equips_item()
+        {
+            yield return Helpers.LoadMovementTestsScene();
+            var player = Helpers.GetPlayer();
+
+            player.ControllerInput.Vertical.Returns(1f);
+
+            Item item = Object.FindObjectOfType<Item>();
+            
+            Assert.AreNotSame(item, player.GetComponent<Inventory>().ActiveItem);
+            
+            yield return new WaitForSeconds(3f);
+
+            Assert.AreSame(item, player.GetComponent<Inventory>().ActiveItem);
         }
     }
 }

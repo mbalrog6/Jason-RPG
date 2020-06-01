@@ -6,12 +6,14 @@ namespace JasonRPG
     {
         private CharacterController _characterController;
         private IMover _mover;
+        private Rotator _rotator;
         public IPlayerInput ControllerInput { get; set; } = new PlayerInput();
 
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
-            _mover = new NavMeshMover(this );
+            _mover = new Mover(this );
+            _rotator = new Rotator(this);
         }
 
         private void Update()
@@ -26,6 +28,7 @@ namespace JasonRPG
             }
         
             _mover.Tick();
+            _rotator.Tick();
         }
     }
 }

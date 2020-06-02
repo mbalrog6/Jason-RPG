@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace JasonRPG.Inventory
@@ -6,8 +7,12 @@ namespace JasonRPG.Inventory
     [RequireComponent(typeof(Collider))]
     public class Item : MonoBehaviour
     {
+        [SerializeField] private UseAction[] actions;
+        public UseAction[] Actions => actions;
+
         private bool _wasPickedUp;
 
+        
         private void OnTriggerEnter(Collider other)
         {
             if (_wasPickedUp)

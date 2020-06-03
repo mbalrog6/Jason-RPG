@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: []
+  crosshairDefinition: {fileID: 0}
 --- !u!65 &43742804
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -516,6 +517,14 @@ PrefabInstance:
       propertyPath: actions.Array.data[0].TargetComponent
       value: 
       objectReference: {fileID: 178844456353104616}
+    - target: {fileID: 783404358770948776, guid: 8cbb9d892544e5e4f83ccfde0516672b, type: 3}
+      propertyPath: crosshairMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 783404358770948776, guid: 8cbb9d892544e5e4f83ccfde0516672b, type: 3}
+      propertyPath: crosshairDefinition
+      value: 
+      objectReference: {fileID: 11400000, guid: d03d532e9c1272d488c4cb0f88c743e7, type: 2}
     - target: {fileID: 5539384357355617692, guid: 8cbb9d892544e5e4f83ccfde0516672b, type: 3}
       propertyPath: m_Name
       value: Shotgun

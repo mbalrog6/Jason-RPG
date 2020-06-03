@@ -232,7 +232,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1023978452}
   - component: {fileID: 1023978451}
-  - component: {fileID: 1023978450}
   m_Layer: 0
   m_Name: UI Camera
   m_TagString: Untagged
@@ -240,14 +239,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1023978450
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023978449}
-  m_Enabled: 1
 --- !u!20 &1023978451
 Camera:
   m_ObjectHideFlags: 0
@@ -382,6 +373,7 @@ GameObject:
   - component: {fileID: 1443843645}
   - component: {fileID: 1443843647}
   - component: {fileID: 1443843646}
+  - component: {fileID: 1443843648}
   m_Layer: 5
   m_Name: Crosshair
   m_TagString: Untagged
@@ -406,7 +398,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1443843646
 MonoBehaviour:
@@ -446,3 +438,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443843644}
   m_CullTransparentMesh: 0
+--- !u!114 &1443843648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443843644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92f31b30efdf3e4da65c6208468eeae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshairImage: {fileID: 0}
+  invalidCrosshairDefinition: {fileID: 11400000, guid: 723668c903d6b724b8c8a1ff5e085f8e, type: 2}

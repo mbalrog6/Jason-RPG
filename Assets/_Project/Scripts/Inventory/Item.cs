@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using JasonRPG.UI;
 using UnityEngine;
 
 namespace JasonRPG.Inventory
@@ -8,7 +9,9 @@ namespace JasonRPG.Inventory
     public class Item : MonoBehaviour
     {
         [SerializeField] private UseAction[] actions = new UseAction[0];
+        [SerializeField] private CrosshairDefinition crosshairDefinition;
         public UseAction[] Actions => actions;
+        public CrosshairDefinition CrosshairDefinition => crosshairDefinition;
 
         private bool _wasPickedUp;
 

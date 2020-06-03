@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace JasonRPG.Inventory
@@ -7,11 +8,13 @@ namespace JasonRPG.Inventory
     {
         [SerializeField] private Transform rightHand;
         [SerializeField] private Transform leftHand;
-        
+
         private List<Item> _items = new List<Item>();
         private Transform _itemRoot;
-        
+
+        public event Action<Item> ActiveItemChanged;
         public Item ActiveItem { get; private set; }
+
 
         private void Awake()
         {
@@ -36,6 +39,7 @@ namespace JasonRPG.Inventory
             item.transform.localRotation = Quaternion.identity;
 
             ActiveItem = item;
+            ActiveItemChanged?.Invoke(ActiveItem);
         }
     }
 

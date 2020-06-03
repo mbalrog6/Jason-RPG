@@ -7,7 +7,7 @@ namespace JasonRPG.Inventory
     [RequireComponent(typeof(Collider))]
     public class Item : MonoBehaviour
     {
-        [SerializeField] private UseAction[] actions;
+        [SerializeField] private UseAction[] actions = new UseAction[0];
         public UseAction[] Actions => actions;
 
         private bool _wasPickedUp;

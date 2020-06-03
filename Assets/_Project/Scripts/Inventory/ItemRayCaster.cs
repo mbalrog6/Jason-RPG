@@ -5,7 +5,7 @@ public class ItemRayCaster : ItemComponent
     [SerializeField] private float _delay;
     [SerializeField] private float _range = 10f;
     
-    private RaycastHit[] _results = new RaycastHit[10];
+    private RaycastHit[] _results = new RaycastHit[100];
     private int _layermask;
 
     private void Awake()

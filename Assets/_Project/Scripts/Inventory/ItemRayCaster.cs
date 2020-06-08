@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using JasonRPG.Entity;
+using UnityEngine;
 
 public class ItemRayCaster : ItemComponent
 {
     [SerializeField] private float _delay;
     [SerializeField] private float _range = 10f;
+    [SerializeField] private int damage = 1;
     
     private RaycastHit[] _results = new RaycastHit[100];
     private int _layermask;
@@ -34,9 +36,8 @@ public class ItemRayCaster : ItemComponent
 
         if (hits > 0)
         {
-            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
-            cube.localScale = Vector3.one * 0.1f;
-            cube.position = nearest.point;
+            var takeHits = nearest.collider.GetComponent<ITakeHit>();
+            takeHits?.TakeHit(damage);
         }
     }
 }

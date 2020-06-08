@@ -10,12 +10,15 @@ namespace JasonRPG.Inventory
     {
         [SerializeField] private UseAction[] actions = new UseAction[0];
         [SerializeField] private CrosshairDefinition crosshairDefinition;
+        [SerializeField] private Sprite icon;
         public UseAction[] Actions => actions;
         public CrosshairDefinition CrosshairDefinition => crosshairDefinition;
+        public Sprite Icon => icon;
+
 
         private bool _wasPickedUp;
 
-        
+
         private void OnTriggerEnter(Collider other)
         {
             if (_wasPickedUp)

@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using JasonRPG;
-using JasonRPG.Inventory;
 using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
@@ -15,6 +14,17 @@ namespace a_player
         public static IEnumerator LoadMovementTestsScene()
         {
             var operation = SceneManager.LoadSceneAsync("Movement Tests");
+            while (operation.isDone == false)
+                yield return null;
+        }
+
+        public static IEnumerator LoadItmesTestScene()
+        {
+            var operation = SceneManager.LoadSceneAsync("Item Tests");
+            while (operation.isDone == false)
+                yield return null;
+            
+            operation = SceneManager.LoadSceneAsync("UI", LoadSceneMode.Additive);
             while (operation.isDone == false)
                 yield return null;
         }
@@ -34,6 +44,8 @@ namespace a_player
             var dot = Vector3.Dot(cross, Vector3.up);
             return dot;
         }
+        
+        
     }
 
     public class with_positive_vertical_input
@@ -144,26 +156,6 @@ namespace a_player
 
             float turnAmount = Helpers.CalculateTurn(originalRotation, player.transform.rotation);
             Assert.Greater( turnAmount, 0);
-        }
-    }
-
-    public class moving_into_an_item
-    {
-        [UnityTest]
-        public IEnumerator picks_up_and_equips_item()
-        {
-            yield return Helpers.LoadMovementTestsScene();
-            var player = Helpers.GetPlayer();
-
-            player.ControllerInput.Vertical.Returns(1f);
-
-            Item item = Object.FindObjectOfType<Item>();
-            
-            Assert.AreNotSame(item, player.GetComponent<Inventory>().ActiveItem);
-            
-            yield return new WaitForSeconds(3f);
-
-            Assert.AreSame(item, player.GetComponent<Inventory>().ActiveItem);
         }
     }
 }

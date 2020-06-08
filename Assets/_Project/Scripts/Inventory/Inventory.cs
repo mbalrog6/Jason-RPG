@@ -13,6 +13,8 @@ namespace JasonRPG.Inventory
         private Transform _itemRoot;
 
         public event Action<Item> ActiveItemChanged;
+        public event Action<Item> ItemPickedUp;
+        
         public Item ActiveItem { get; private set; }
 
 
@@ -27,10 +29,11 @@ namespace JasonRPG.Inventory
             _items.Add(item);
             item.transform.SetParent(_itemRoot);
 
+            ItemPickedUp?.Invoke(item);
             Equip(item);
         }
 
-        private void Equip(Item item)
+        public void Equip(Item item)
         {
             Debug.Log($"Equipped Item: {item.gameObject.name}");
             

@@ -62,6 +62,8 @@ MonoBehaviour:
   actions:
   - UseMode: 0
     TargetComponent: {fileID: 2620794502508962076}
+  crosshairDefinition: {fileID: 11400000, guid: a571b0be2c2883a45a39f1b6464cf5b8, type: 2}
+  icon: {fileID: 21300000, guid: 856c6367d89ef4c41b28ba211c4586bf, type: 3}
 --- !u!114 &2620794502508962076
 MonoBehaviour:
   m_ObjectHideFlags: 0

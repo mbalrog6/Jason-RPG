@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace JasonRPG
 {
@@ -16,19 +17,33 @@ namespace JasonRPG
             _rotator = new Rotator(this);
         }
 
+        private void OnEnable()
+        {
+            ControllerInput.MovementSwitched += Handle_MovementSwitched;
+        }
+
+        private void OnDisable()
+        {
+            ControllerInput.MovementSwitched -= Handle_MovementSwitched;
+        }
+
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            _mover.Tick();
+            _rotator.Tick();
+            ControllerInput.Tick();
+        }
+
+        private void Handle_MovementSwitched( MovementMode movementMode )
+        {
+            if (movementMode == MovementMode.WASD)
             {
                 _mover = new Mover(this);
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            else if (movementMode == MovementMode.Navmesh)
             {
-                _mover = new NavMeshMover(this );
+                _mover = new NavMeshMover(this);
             }
-        
-            _mover.Tick();
-            _rotator.Tick();
         }
     }
 }

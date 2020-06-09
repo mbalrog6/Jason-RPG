@@ -40,10 +40,11 @@ namespace JasonRPG.Entity
             OnDied?.Invoke();
         }
 
-    }
+        [ContextMenu("Take Leathal Damage")]
+        private void TakeLeathalDamage()
+        {
+            TakeHit(Health);
+        }
 
-    public interface ITakeHit
-    {
-        void TakeHit(int amount);
     }
 }

@@ -29,6 +29,17 @@ namespace a_player
                 yield return null;
         }
 
+        public static IEnumerator LoadEntityStateMachineTestScene()
+        {
+            var operation = SceneManager.LoadSceneAsync("EnityStateMachineTests");
+            while (operation.isDone == false)
+                yield return null;
+            
+            operation = SceneManager.LoadSceneAsync("UI", LoadSceneMode.Additive);
+            while (operation.isDone == false)
+                yield return null;
+        }
+
         public static Player GetPlayer()
         {
             var player = GameObject.FindObjectOfType<Player>();
@@ -44,8 +55,6 @@ namespace a_player
             var dot = Vector3.Dot(cross, Vector3.up);
             return dot;
         }
-        
-        
     }
 
     public class with_positive_vertical_input

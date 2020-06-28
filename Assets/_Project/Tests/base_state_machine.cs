@@ -13,7 +13,6 @@ namespace Tests
         {
             var stateMachine = new StateMachine();
             IState firstState = Substitute.For<IState>();
-            stateMachine.Add(firstState);
             stateMachine.SetState(firstState);
             
             Assert.AreSame(firstState, stateMachine.CurrentState);
@@ -25,9 +24,7 @@ namespace Tests
             var stateMachine = new StateMachine();
             IState firstState = Substitute.For<IState>();
             IState secondState = Substitute.For<IState>();
-            stateMachine.Add(firstState);
-            stateMachine.Add(secondState);
-            
+
             stateMachine.SetState(firstState);
             Assert.AreNotSame(stateMachine.CurrentState, secondState);
             
@@ -42,8 +39,6 @@ namespace Tests
             
             IState firstState = Substitute.For<IState>();
             IState secondState = Substitute.For<IState>();
-            stateMachine.Add(firstState);
-            stateMachine.Add(secondState);
 
             bool ShouldTransitionToNewState() => true;
             stateMachine.AddTransition(firstState, secondState, () => ShouldTransitionToNewState());
@@ -62,8 +57,6 @@ namespace Tests
             
             IState firstState = Substitute.For<IState>();
             IState secondState = Substitute.For<IState>();
-            stateMachine.Add(firstState);
-            stateMachine.Add(secondState);
 
             bool ShouldNotTransitionToNewState() => false;
             stateMachine.AddTransition(firstState, secondState, () => ShouldNotTransitionToNewState());
@@ -82,8 +75,6 @@ namespace Tests
             
             IState firstState = Substitute.For<IState>();
             IState secondState = Substitute.For<IState>();
-            stateMachine.Add(firstState);
-            stateMachine.Add(secondState);
 
             bool ShouldTransitionToNewState() => true;
             stateMachine.AddAnyTransition(secondState, () => ShouldTransitionToNewState());
@@ -93,6 +84,24 @@ namespace Tests
             stateMachine.Tick();
             
             Assert.AreSame(secondState, stateMachine.CurrentState);
+        }
+        
+        [Test]
+        public void transition_does_not_switch_state_when_not_in_correct_source_state()
+        {
+            var stateMachine = new StateMachine();
+            IState firstState = Substitute.For<IState>();
+            IState secondState = Substitute.For<IState>();
+            IState thirdState = Substitute.For<IState>();
+
+            bool ShouldTransitionToNewState() => true;
+            stateMachine.AddTransition(secondState, thirdState, () => ShouldTransitionToNewState());
+            
+            stateMachine.SetState(firstState);
+            Assert.AreSame(firstState, stateMachine.CurrentState);
+            stateMachine.Tick();
+            
+            Assert.AreSame(firstState, stateMachine.CurrentState);
         }
         
     }

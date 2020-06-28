@@ -14,7 +14,7 @@ namespace JasonRPG.Inventory
             DrawIcon(item);
             DrawCrosshairDefinition(item);
             DrawActions(item);
-            
+            DrawStatMods(item);
         }
 
         private void DrawIcon(Item item)
@@ -121,13 +121,53 @@ namespace JasonRPG.Inventory
                         {
                             continue;
                         }
-                        
+
                         actionsProperty.InsertArrayElementAtIndex(actionsProperty.arraySize);
                         var action = actionsProperty.GetArrayElementAtIndex(actionsProperty.arraySize - 1);
                         var targetComponentProperty = action.FindPropertyRelative("TargetComponent");
                         targetComponentProperty.objectReferenceValue = itemCompent;
                         serializedObject.ApplyModifiedProperties();
                     }
+                }
+            }
+        }
+
+        private void DrawStatMods(Item item)
+        {
+            using (var statModsProperty = serializedObject.FindProperty("statMods"))
+            {
+                for (int i = 0; i < statModsProperty.arraySize; i++)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    if (GUILayout.Button("x", GUILayout.Width(20)))
+                    {
+                        statModsProperty.DeleteArrayElementAtIndex(i);
+                        serializedObject.ApplyModifiedProperties();
+                        break;
+                    }
+
+                    var statMod = statModsProperty.GetArrayElementAtIndex(i);
+                    if (statMod != null)
+                    {
+                        var statTypeProperty = statMod.FindPropertyRelative("StatType");
+                        var valueProperty = statMod.FindPropertyRelative("Value");
+
+                        statTypeProperty.enumValueIndex = (int) (StatType) EditorGUILayout.EnumPopup(
+                            (StatType) statTypeProperty.enumValueIndex,
+                            GUILayout.Width(120));
+
+                        EditorGUILayout.PropertyField(valueProperty, GUIContent.none, false);
+
+                        serializedObject.ApplyModifiedProperties();
+                    }
+
+                    EditorGUILayout.EndHorizontal();
+                }
+
+                if (GUILayout.Button("+ Add Stat"))
+                {
+                    statModsProperty.InsertArrayElementAtIndex(statModsProperty.arraySize);
+                    serializedObject.ApplyModifiedProperties();
                 }
             }
         }

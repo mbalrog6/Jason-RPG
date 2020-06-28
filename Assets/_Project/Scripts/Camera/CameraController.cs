@@ -8,6 +8,9 @@ namespace JasonRPG
 
         private void Update()
         {
+            if (Paused.Active)
+                return;
+            
             float mouseRotation = Input.GetAxis("Mouse Y");
             _tilt = Mathf.Clamp(_tilt - mouseRotation, -15f, 15f);
             transform.localRotation = Quaternion.Euler(_tilt, 0f, 0f);

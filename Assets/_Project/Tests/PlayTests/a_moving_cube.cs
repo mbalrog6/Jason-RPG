@@ -27,27 +27,5 @@ namespace Tests
                 Assert.AreEqual(i+1, cube.transform.position.z );
             }
         }
-
-        [UnityTest]
-        public IEnumerator growing_a_cube()
-        {
-            // ARRANGE
-            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.position = Vector3.zero;
-            cube.transform.localScale = Vector3.one;
-
-            for (int i = 1; i < 10; i++)
-            {
-                // ACT
-                cube.transform.localScale = Vector3.one * i;
-                yield return new WaitForSeconds(0.5f);
-                
-                // ASSERT
-                Assert.AreEqual(i, cube.transform.localScale.x);
-                Assert.AreEqual(i, cube.transform.localScale.y);
-                Assert.AreEqual(i, cube.transform.localScale.z);
-            }
-            
-        }
     }
 }

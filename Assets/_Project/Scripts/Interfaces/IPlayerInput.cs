@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace JasonRPG
 {
@@ -9,6 +10,9 @@ namespace JasonRPG
         float Vertical { get; }
         float Horizontal { get; }
         float MouseX { get; }
+        bool PausePressed { get; }
+        Vector2 MousePosition { get; }
         void Tick();
+        bool GetKeyDown(KeyCode keyCode);
     }
 }

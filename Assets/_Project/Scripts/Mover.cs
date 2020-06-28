@@ -17,7 +17,7 @@ namespace JasonRPG
 
         public void Tick()
         {
-            Vector3 movementInput = new Vector3(_player.ControllerInput.Horizontal, 0, _player.ControllerInput.Vertical);
+            Vector3 movementInput = new Vector3(PlayerInput.Instance.Horizontal, 0, PlayerInput.Instance.Vertical);
             Vector3 movement = _player.transform.rotation * movementInput;
             _characterController.SimpleMove(movement);
         }

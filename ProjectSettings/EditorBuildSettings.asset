@@ -17,4 +17,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Test  Scenes/EnityStateMachineTests.unity
     guid: 57cec94cd09d0804983482e87bd37c16
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/_Project/Scenes/Level 1.unity
+    guid: bfc6f5cdb9b6d47419b7cfb8baf34af3
+  - enabled: 1
+    path: Assets/_Project/Scenes/menu.unity
+    guid: dd31726a24334e448a21b40bca4f6d2d
+  - enabled: 1
+    path: Assets/_Project/Scenes/Test  Scenes/EmptyScene.unity
+    guid: 5c158d334c1a2434cb516fae5fadd52f
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 2fd7ab4afcab25f409734ab91c85d43e, type: 2}

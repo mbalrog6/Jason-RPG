@@ -33,7 +33,7 @@ namespace JasonRPG.UI
             _crosshairImage = GetComponent<Image>();
         }
 
-        public void Handle_ActiveItemChanged( Item activeItem )
+        public void Handle_ActiveItemChanged( IItem activeItem )
         {
             if (activeItem != null && activeItem.CrosshairDefinition != null)
             {

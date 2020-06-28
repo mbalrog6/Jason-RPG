@@ -10,17 +10,14 @@ namespace JasonRPG.UI
     {
         [SerializeField] private Image icon;
         private TMP_Text _text;
-        public Item Item { get; private set; }
+        private UIInventorySlot _inventorySlot;
+        public IItem Item => _inventorySlot.Item;
         public bool IsEmplty => Item == null;
         public Sprite Icon => icon.sprite;
 
-        public void SetItem(Item item)
-        {
-            Item = item;
-            icon.sprite = item.Icon;
-        }
+        private void Awake() => _inventorySlot = GetComponent<UIInventorySlot>();
 
-       private void OnValidate()
+        private void OnValidate()
        {
            _text = GetComponentInChildren<TMP_Text>();
            int hotkeyNumber = transform.GetSiblingIndex() + 1;

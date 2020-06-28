@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 68d0164543e536846a4c7b6bb8138980
+  m_SerializeEntries:
+  - m_GUID: edc00b8d04eddd24d96e4703daeeb995
+    m_Address: LootItemHolder.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 5458196486647520056, guid: edc00b8d04eddd24d96e4703daeeb995, type: 3}
+    m_TargetAsset: {fileID: 5458196486647520056, guid: edc00b8d04eddd24d96e4703daeeb995, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: e3d235bc697b3574ca0e5cb1281bb8b9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1f9fd5802bf3a12419afd2be0b1fe236, type: 2}
+    - {fileID: 11400000, guid: 67f9adc9afa169e408d43c3c509f6e82, type: 2}

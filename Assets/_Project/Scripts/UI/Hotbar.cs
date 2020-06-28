@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using JasonRPG.Inventory;
-using NSubstitute.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace JasonRPG.UI
 {
@@ -11,21 +7,17 @@ namespace JasonRPG.UI
     {
         private Inventory.Inventory _inventory;
         private Slot[] _slots;
-        private Player _player;
 
         private void OnEnable()
         {
-            _player = FindObjectOfType<Player>();
-            _player.ControllerInput.HotkeyPressed += Handle_HotkeyPressed;
+            PlayerInput.Instance.HotkeyPressed += Handle_HotkeyPressed;
             _inventory = FindObjectOfType<Inventory.Inventory>();
-            _inventory.ItemPickedUp += Handle_ItemPickedUp;
             _slots = GetComponentsInChildren<Slot>();
         }
 
         private void OnDisable()
         {
-            _player.ControllerInput.HotkeyPressed -= Handle_HotkeyPressed;
-            _inventory.ItemPickedUp -= Handle_ItemPickedUp;
+            PlayerInput.Instance.HotkeyPressed -= Handle_HotkeyPressed;
         }
 
         private void Handle_HotkeyPressed(int hotbarKeyPressed)
@@ -41,28 +33,7 @@ namespace JasonRPG.UI
                 _inventory.Equip(_slots[hotbarKeyPressed].Item);
             }
         }
-
-        private void Handle_ItemPickedUp(Item item)
-        {
-            Slot slot = FindNextOpenSlot();
-            if (slot != null)
-            {
-                slot.SetItem(item);
-            }
-        }
-
-        private Slot FindNextOpenSlot()
-        {
-            foreach (Slot slot in _slots)
-            {
-                if (slot.IsEmplty)
-                {
-                    return slot;
-                }
-            }
-
-            return null;
-        }
+        
     }
 }
 

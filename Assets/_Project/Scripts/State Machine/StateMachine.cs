@@ -6,25 +6,16 @@ namespace JasonRPG
 {
     public class StateMachine
     {
-        private List<IState> _states = new List<IState>();
-        private Dictionary<IState, List<StateTransition>> _stateTransitions = new Dictionary<IState, List<StateTransition>>();
+        private List<StateTransition> _stateTransitions = new List<StateTransition>();
         private List<StateTransition> _anyStateTransitions = new List<StateTransition>();
-        public IState CurrentState { get; private set; }
 
-        public void Add(IState state)
-        {
-            _states.Add(state);
-        }
+        public event Action<IState> OnStateChanged;
+        public IState CurrentState { get; private set; }
 
         public void AddTransition(IState from, IState to, Func<bool> predicate)
         {
-            if (_stateTransitions.ContainsKey(from) == false)
-            {
-                _stateTransitions[from] = new List<StateTransition>();
-            }
-
             var stateTransition = new StateTransition(from, to, predicate);
-            _stateTransitions[from].Add(stateTransition);
+            _stateTransitions.Add(stateTransition);
         }
 
         public void AddAnyTransition(IState to, Func<bool> predicate)
@@ -42,6 +33,7 @@ namespace JasonRPG
             CurrentState = state;
             Debug.Log($"Changed to state: {state}");
             CurrentState.OnEnter();
+            OnStateChanged?.Invoke(CurrentState);
         }
 
         public void Tick()
@@ -59,23 +51,17 @@ namespace JasonRPG
         {
             foreach (var transition in _anyStateTransitions)
             {
-                if( transition != null )
+                if (transition.Predicate())
                 {
-                    if (transition.Predicate())
-                    {
-                        return transition;
-                    }
+                    return transition;
                 }
             }
-            
-            if (_stateTransitions.ContainsKey(CurrentState))
+
+            foreach (var transition in _stateTransitions)
             {
-                foreach (var transition in _stateTransitions[CurrentState])
+                if (transition.FromState == CurrentState && transition.Predicate())
                 {
-                    if (transition.Predicate())
-                    {
-                        return transition;
-                    }
+                    return transition;
                 }
             }
 

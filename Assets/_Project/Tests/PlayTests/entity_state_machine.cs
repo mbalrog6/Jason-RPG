@@ -2,6 +2,7 @@
 using a_player;
 using JasonRPG;
 using JasonRPG.Entity;
+using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -10,6 +11,12 @@ namespace state_machine
 {
     public class entity_state_machine
     {
+        [SetUp]
+        public void setup()
+        {
+            PlayerInput.Instance = Substitute.For<IPlayerInput>();
+        }
+        
         [UnityTest]
         public IEnumerator start_in_idle_state()
         {

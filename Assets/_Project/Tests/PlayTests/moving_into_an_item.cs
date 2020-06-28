@@ -18,6 +18,7 @@ namespace a_player
         [UnitySetUp]
         public IEnumerator init()
         {
+            PlayerInput.Instance = Substitute.For<IPlayerInput>();
             yield return Helpers.LoadItmesTestScene();
             player = Helpers.GetPlayer();
             item = Object.FindObjectOfType<Item>();
@@ -26,7 +27,7 @@ namespace a_player
         [UnityTest]
         public IEnumerator picks_up_and_equips_item()
         {
-            player.ControllerInput.Vertical.Returns(1f);
+            PlayerInput.Instance.Vertical.Returns(1f);
 
             Assert.AreNotSame(item, player.GetComponent<Inventory>().ActiveItem);
             

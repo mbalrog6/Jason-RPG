@@ -1,10 +1,16 @@
 ﻿using System.Collections.Generic;
 using JasonRPG.Inventory;
+using NSubstitute.Core;
 
 public class Stats
 {
     private Dictionary<StatType, float> _stats = new Dictionary<StatType, float>();
 
+    public Stats()
+    {
+        Add(StatType.MoveSpeed, 5f);
+    }
+    
     public void Add(StatType statType, float value)
     {
         if (_stats.ContainsKey(statType))
